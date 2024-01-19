@@ -1,0 +1,35 @@
+<template name="navbar">
+
+  <header class="main-header">
+
+    <!-- Logo -->
+    <a href="/dashboard" class="logo">
+       <span class="logo-mini"><b>N</b>Y</span>
+       <span class="logo-lg"><img src="./logo.jpg" style="height:40px;"> <b>N Y S A</b></span>
+    </a>
+
+    <nav class="navbar navbar-static-top">
+      <div class="navbar-custom-menu">
+        <ul class="nav navbar-nav">
+          {{#if isAdmin}}
+          <li class="messages-menu">
+	    <a href="/admin/notificationList" class="dropdown-toggle" >
+	      <i class="fa fa-envelope-o"></i>
+	      <span class="label label-danger">{{allNotification}}</span>
+            </a>
+          </li>
+          {{/if}}
+          <li>
+            <a href="#" data-toggle="control-sidebar">{{loggedUserName}}</a>
+          </li>
+          <li>
+            <a href="#" id="loggedUser" >ÇIKIŞ</a>
+          </li>
+        </ul>
+      </div>
+
+    </nav>
+  </header>
+
+
+</template>

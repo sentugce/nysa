@@ -1,0 +1,243 @@
+<template name="pieceDetails">
+  {{#each getPiece}}
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="box box-primary">
+        <div class="col-xs-12">
+          <span class="info-box-number"> <i class="fa fa-th"></i>Mimari Eleman Detayları</span>
+          <br />
+        </div>
+
+
+        <div class="col-xs-12 bg-gray head-field">
+
+          <div class="col-md-6 col-xs-12">
+            <div class="col-md-4 col-xs-12"><strong>Yapı </strong></div>
+            <div class="col-md-8 col-xs-12"><a href="">{{curentStructure structureId}}</a></div>
+
+            <div class="col-md-4 col-xs-12"><strong>Blok Cinsi </strong></div>
+            <div class="col-md-8 col-xs-12"><a href="">{{curentBlock blockId}}</a></div>
+
+            <div class="col-md-4 col-xs-12"><strong>Envanter No </strong></div>
+            <div class="col-md-8 col-xs-12">{{envanterNo}}</div>
+
+            <div class="col-md-4 col-xs-12"><strong>Bulunma Tarihi </strong></div>
+            <div class="col-md-8 col-xs-12">{{bulunmaTarih}}     </div>
+
+            <div class="col-md-4 col-xs-12"><strong>Kaydeden </strong></div>
+            <div class="col-md-8 col-xs-12">{{kaydeden}}</div>
+
+            <div class="col-md-4 col-xs-12"><strong>Bezeme </strong></div>
+            <div class="col-md-8 col-xs-12">{{curentDecoration decorationId}}</div>
+          </div>
+
+          <div class="col-md-6 col-xs-12">
+            <div class="row">
+              <div class="col-md-4 col-sm-6 col-xs-12"><strong>Yükseklik </strong></div>
+              <div class="col-md-8 col-sm-6 col-xs-12">{{size}}</div>
+            </div>
+            <div class="row">
+              <div class="col-md-4 col-sm-6 col-xs-12"><strong>Boy </strong></div>
+              <div class="col-md-8 col-sm-6 col-xs-12">{{length}}</div>
+            </div>
+            <div class="row">
+              <div class="col-md-4 col-sm-6 col-xs-12"><strong>Genişlik </strong></div>
+              <div class="col-md-8 col-sm-6 col-xs-12">{{width}}</div>
+            </div>
+          </div>
+
+        </div>
+
+
+        <div class=" well row">
+          <div class="row">
+            <div class="col-md-12 col-xs-12">
+
+              <div class="col-md-12 col-xs-12">
+                <h5><strong>Resimler</strong></h5>
+              </div>
+              {{#each media}}
+              <div class="col-md-3 col-xs-12" >
+                <a class="fancybox" href="{{url}}" rel="group" data-caption="">
+                  <div style="width:100%; height:160px; background-image:url({{url}});background-size: cover;border-radius: 3px;margin-bottom:15px;"></div>
+                </a>
+
+              </div>
+              {{/each}}
+            </div>
+          </div>
+        </div>
+
+        <div class="well row" >
+
+
+          <div class="col-md-12 col-xs-12 ">
+
+            <div class="row">
+              <div class="col-md-12 col-xs-12">
+                <h5><strong>Buluntu Yeri ve Şimdiki Yeri:</strong></h5>
+                {{buluntuYeri}}
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-12 col-xs-12">
+                <h5><strong>Tanım:</strong></h5>
+                {{description}}
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12 col-xs-12">
+                <h5><strong>Yapıdaki Yeri:</strong></h5>
+                {{yapıdakiYeri}}
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-12 col-xs-12">
+                <h5><strong>Birleştiği Bloklar:</strong></h5>
+                {{#each birlestigiBlokDetails _id}}
+                <a href="" class="btn btn-warning" data-toggle="modal" data-target="#pieceListModal" id="envanterNo"> Karşılaştır </a>
+                {{/each}}
+
+                {{#each   birlestigiBlokDetails _id}}
+                {{{birlesenLink birlesen}}}
+
+                {{/each}}
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12 col-xs-12">
+                <h5><strong>Taş Kesimi, Formu ve Tipi:</strong></h5>
+                {{tasKesimi}}
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-12 col-xs-12">
+                <h5><strong>Yapısal Kuruluşu:</strong></h5>
+                {{yapısalKurulusu}}
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12 col-xs-12">
+                <h5><strong>Bloğa Has Özellik, İşaret, Tamirat:</strong></h5>
+                {{blokOzellik}}
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-12 col-xs-12">
+                <h5><strong>Mermerin Cinsi (koruma durumu,kırıkları):</strong></h5>
+                {{mermerinCinsi}}
+              </div>
+            </div>
+
+          </div>
+
+
+
+
+        </div>
+
+        <div class="well row" >
+          <div class="col-md-6 col-xs-12">
+            <div class="row">
+              <div class="col-md-12 col-xs-12">
+                <h4><strong>İşleme Tarzı (Üstten Alta):</strong></h4>
+              </div>
+            </div>
+            <div class="row ">
+              <div class="col-md-12 col-xs-12">
+                <h5><strong>Ön:</strong></h5>
+                {{frontFace}}
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12 col-xs-12">
+                <h5><strong>Üst:</strong></h5>
+                {{upperFace}}
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12 col-xs-12">
+                <h5><strong>Alt:</strong></h5>
+                {{under}}
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-xs-12 ">
+            <div class="row">
+              <div class="col-md-12 col-xs-12">
+                <h5><strong>Sağ Yan:</strong></h5>
+                {{rightFace}}
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12 col-xs-12">
+                <h5><strong>Sol yan:</strong></h5>
+                {{leftFace}}
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-12 col-xs-12">
+                <h5><strong>Arka:</strong></h5>
+                {{back}}
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <div class="modal fade" id="pieceListModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content modal-lg">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Birleşen Bloklar</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+
+
+          {{#each birlestigiBlokMedia _id}}
+
+          {{#each birlesenMedia birlesen}}
+
+          <div class="row">
+            <div class="col-md-12 col-xs-12" >
+              <div class="col-md-2 col-sm-6 col-xs-12"><strong>Yükseklik: </strong></div>
+              <div class="col-md-2 col-sm-6 col-xs-12">{{size}}</div>
+              <div class="col-md-2 col-sm-6 col-xs-12"><strong>Boy: </strong></div>
+              <div class="col-md-2 col-sm-6 col-xs-12">{{length}}</div>
+              <div class="col-md-2 col-sm-6 col-xs-12"><strong>Genişlik: </strong></div>
+              <div class="col-md-2 col-sm-6 col-xs-12">{{width}}</div>
+            </div>
+          </div>
+          <div class="row">
+
+            {{#each media}}
+            <div class="col-md-4 col-xs-12" >
+              <a class="fancybox" href="{{url}}" rel="group" data-caption="">
+                <div style="width:100%; height:160px; background-image:url({{url}});background-size: cover;border-radius: 3px;margin-bottom:15px;"></div></a>
+              </div>
+              {{/each}}
+            </div>
+            {{/each}}
+            {{/each}}
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    {{/each}}
+  </template>

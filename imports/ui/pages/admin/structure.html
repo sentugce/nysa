@@ -1,0 +1,103 @@
+<template name="structure">
+
+<section class="content">
+<div class="row">
+<div class="col-md-6">
+          <!-- general form elements -->
+          <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">Yapı</h3>
+            </div>
+              <div class="box-body">
+                <div class="form-group">
+                  <label for="structure">Yapı</label>
+                  <input type="text" class="form-control" id="structure" placeholder="Yapı İsmi Giriniz">
+                </div>
+                <div class="form-group">
+                  <label for="description">Tanım</label>
+                  <textarea class="form-control" rows="3" placeholder="Yapı Açıklaması" id="description"></textarea>
+                </div>
+              </div>
+              <!-- /.box-body -->
+
+              <div class="box-footer">
+                <button class="btn btn-primary" id="addStructure">KAYDET</button>
+              </div>
+          </div>
+</div>
+    </div>
+
+    <div class="row">
+
+      <!-- general form elements -->
+      <div class="box box-primary">
+        <div class="box-header with-border">
+          <h3 class="box-title">Yapı Listesi</h3>
+        </div>
+        <div class="box-body">
+
+          <div class="box">
+
+            <div class="box-body table-responsive no-padding">
+              <table class="table " id="structure-list">
+                <thead>
+                <tr>
+
+                  <th style="width:30%">Yapı Adı</th>
+                  <th style="width:40%">Tanım</th>
+                  <th style="width:15%">Düzenle</th>
+                  <th style="width:15%">Sil</th>
+                </tr>
+              </thead>
+                <tbody>
+                {{#each allStructure}}
+                <tr>
+                  <td>{{structure}}</td>
+                  <td>{{description}}</td>
+                  <td><a href="" class="btn btn-primary" data-toggle="modal" data-target="#structureModal" id="structureUpdate">Düzenle</a></td>
+                <td><a href="" class="btn btn-danger" id="structureRemove">Sil</a></td>
+
+                </tr>
+                {{/each}}
+              </tbody></table>
+            </div>
+            <!-- /.box-body -->
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+
+  </section>
+  {{#with selectedStructure}}
+  <div class="modal fade" id="structureModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+  <div class="modal-content">
+  <div class="modal-header">
+  <h5 class="modal-title" id="exampleModalLabel">Yapı</h5>
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+  <span aria-hidden="true">&times;</span>
+  </button>
+  </div>
+  <div class="modal-body">
+  <form>
+  <div class="form-group">
+  <label for="recipient-name" class="col-form-label">Yapı Adı</label>
+  <input type="text" class="form-control" id="structure-name" value="{{structure}}">
+  </div>
+  <div class="form-group">
+  <label for="message-text" class="col-form-label">Tanım</label>
+  <textarea class="form-control" id="description-text">{{description}}</textarea>
+  </div>
+  </form>
+  </div>
+  <div class="modal-footer">
+  <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+  <button type="button" class="btn btn-primary" id="structure-modal-update">Güncelle</button>
+  </div>
+  </div>
+  </div>
+  </div>
+  {{/with}}
+</template>

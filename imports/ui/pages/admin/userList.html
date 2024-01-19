@@ -1,0 +1,54 @@
+<template name="userList">
+  <section class="content">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="box box-primary">
+          <h3 class="box-title">Kullanıcı Listesi</h3>
+          <table class="table table-hover">
+            <tbody>
+              <tr>
+
+                <th>E-mail</th>
+                <th>Yetkiler</th>
+                <th>İşlemler</th>
+              </tr>
+
+
+
+
+              {{#each allUsers}}
+              {{#if myRecord _id}}
+              <tr>
+
+                <td>{{#each emails}}{{address}}{{/each}} </td>
+                <td>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" {{isChecked create}} id="create" name="create">
+                    <label class="form-check-label" for="inlineCheckbox1">Ekle</label>
+                    <input class="form-check-input" type="checkbox" id="update" {{isChecked update}}  name="update">
+                    <label class="form-check-label" for="inlineCheckbox1">Güncelle</label>
+                    <input class="form-check-input" type="checkbox" id="remove" {{isChecked remove}}  name="remove">
+                    <label class="form-check-label" for="inlineCheckbox1">Sil</label>
+                  </div>
+
+                </td>
+
+                <td>
+                  <a class="btn {{#if isAdmin}} btn-primary {{else}} btn-warning {{/if}} btn-xs" id="change-role">{{#if isAdmin}}Kullanıcı Yap{{else}}Admin Yap{{/if}}</a>
+
+                  <a class="btn {{#if userVerified}} btn-primary {{else}} btn-danger {{/if}} btn-xs" id="send-{{#if userVerified}}ok{{else}}remove{{/if}}">{{#if userVerified}}Kullanıcı Onayla{{else}}Sil{{/if}}</a>
+
+                </td>
+              </tr>
+              {{/if}}
+              {{/each}}
+
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+</template>

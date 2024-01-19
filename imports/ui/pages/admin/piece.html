@@ -1,0 +1,191 @@
+<template name="piece">
+
+  <section class="content">
+    <div class="row">
+
+      <!-- general form elements -->
+      <div class="box box-primary">
+        <div class="box-header with-border">
+          <h3 class="box-title">Envanter</h3>
+        </div>
+        <div class="box-body">
+          <div class="row">
+
+            <div class="col-md-4 col-xs-12">
+              <div class="form-group">
+                <label for="block">Yapı</label>
+                <select class="form-control" id="structureId">
+                  <option value="-1">Yapı Seçiniz</option>
+                  {{#each allStructure}}
+                  <option value="{{_id}}" {{selectedFormat _id 'structure'}}>{{structure}}</option>
+                  {{/each}}
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="block">Mimari Eleman</label>
+                <select class="form-control" id="blockId">
+                  <option value="-1">Blok Cinsi Seçiniz</option>
+                  {{#each allBlocks}}
+                  <option value="{{_id}}" {{selectedFormat _id 'block'}}>{{block}}</option>
+                  {{/each}}
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="decoration">Bezeme</label>
+                <select class="form-control" id="decorationId">
+                  <option value="-1">Bezeme Seçiniz</option>
+                  {{#each allDecoration}}
+                  <option value="{{_id}}" {{selectedFormat _id 'decoration'}}>{{decoration}}</option>
+                  {{/each}}
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="buluntuYeri">Buluntu Yeri ve Şimdiki Yeri</label>
+                <textarea class="form-control" rows="3" placeholder="Buluntu Yeri ve Şimdiki Yeri " id="buluntuYeri">{{#each getPiece}}{{buluntuYeri}}{{/each}}</textarea>
+
+              </div>
+              <div class="form-group">
+                <label for="description">Tanım</label>
+                <textarea class="form-control" rows="3" placeholder="Tanım" id="description">{{#each getPiece}}{{description}}{{/each}}</textarea>
+              </div>
+            </div>
+            <div class="col-md-4 col-xs-12">
+              <div class="form-group">
+                <label for="envanterNo">Envanter No</label>
+                <input type="text" name="table_search" class="form-control pull-left" id="envanterNo" value="{{#each getPiece}}{{envanterNo}}{{/each}}">
+
+              </div>
+              <div class="form-group">
+                <label for="bulunmaTarih">Bulunma Tarihi</label>
+                <input type="date" name="table_search" class="form-control pull-left" id="bulunmaTarih" value="{{#each getPiece}}{{bulunmaTarih}}{{/each}}">
+
+              </div>
+              <div class="form-group">
+                <label for="kaydeden">Kaydeden</label>
+                <input type="text" name="table_search" class="form-control pull-left" id="kaydeden" value="{{#each getPiece}}{{kaydeden}}{{/each}}">
+
+              </div>
+              <div class="form-group">
+                <label for="yapıdakiYeri">Yapıdaki Yeri</label>
+                <input type="text" name="table_search" class="form-control pull-left" id="yapıdakiYeri" value="{{#each getPiece}}{{yapıdakiYeri}}{{/each}}">
+
+              </div>
+              <div class="form-group">
+                <label for="birlestigiBlok">Birleştiği Bloklar</label>
+                <select multiple class="form-control pull-left" id="birlestigiBlok">
+                  <option value="-1">Birleştiği Bloklar</option>
+                  {{#each  selectedSt}}
+                  <option value="{{envanterNo}}">{{envanterNo}}</option>
+                  {{/each}}
+                </select>
+
+
+              </div>
+              <div class="form-group">
+                <label for="tasKesimi">Taş Kesimi, Formu ve Tipi</label>
+                <input type="text" name="table_search" class="form-control pull-left" id="tasKesimi">
+
+              </div>
+
+            </div>
+
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="yapısalKurulusu">Yapısal Kuruluşu(....no'lu blokla benzerdir)</label>
+                <input type="text" name="table_search" class="form-control pull-left" id="yapısalKurulusu" value="{{#each getPiece}}{{yapısalKurulusu}}{{/each}}">
+
+              </div>
+              <div class="form-group">
+                <label for="blokOzellik">Bloğa Has Özellik, İşaret, Tamirat</label>
+                <input type="text" name="table_search" class="form-control pull-left" id="blokOzellik" value="{{#each getPiece}}{{blokOzellik}}{{/each}}">
+
+              </div>
+              <div class="form-group">
+                <label for="mermerinCinsi">Mermerin Cinsi(koruma durumları,kırıkları)</label>
+                <input type="text" name="table_search" class="form-control pull-left" id="mermerinCinsi" value="{{#each getPiece}}{{mermerinCinsi}}{{/each}}">
+
+              </div>
+              <div class="form-group">
+                <label>Resim Yükle</label>
+                {{> upload_semanticUI callbacks=uploadCallbacksPages multiple=true autoStart=true}}
+
+              </div>
+            </div>
+          </div>
+
+          <div class="row bg-gray measures">
+            <div id="imgField">
+              {{#each getPiece}}
+              {{#each media}}
+              <div class="col-md-4 col-xs-12">
+                <img src="{{url}}">
+              </div>
+              {{/each}}
+              {{/each}}
+
+            </div>
+          </div>
+
+          <div class="row bg-gray measures">
+            <div class="col-md-12">
+              <label for="">Ölçüler</label>
+            </div>
+            <div class="col-md-3">
+              <label for="size">Yükseklik</label>
+              <input class="form-control"  placeholder="Yükseklik" id="size" value="{{#each getPiece}}{{size}}{{/each}}">
+            </div>
+            <div class="col-md-3">
+              <label for="length">Boy</label>
+              <input class="form-control"  placeholder="Boy" id="length" value="{{#each getPiece}}{{length}}{{/each}}">
+            </div>
+            <div class="col-md-3">
+              <label for="width">Genişlik</label>
+              <input class="form-control"  placeholder="Genişlik" id="width" value="{{#each getPiece}}{{width}}{{/each}}">
+            </div>
+            <div class="col-md-3">
+              <label for="width">Çap</label>
+              <input class="form-control"  placeholder="Çap" id="diameter" value="{{#each getPiece}}{{diameter}}{{/each}}">
+            </div>
+          </div>
+          <div class="row bg-gray measures">
+            <div class="col-md-12">
+              <label for="description">İşleme Tarzı</label>
+              (Üstten Alta)
+            </div>
+            <div class="col-md-6">
+              <label for="frontFace">Ön</label>
+              <textarea class="form-control" rows="2" placeholder="Ön" id="frontFace">{{#each getPiece}}{{frontFace}}{{/each}}</textarea>
+            </div>
+            <div class="col-md-6">
+              <label for="upperFace">Üst</label>
+              <textarea class="form-control" rows="2" placeholder="Üst" id="upperFace">{{#each getPiece}}{{upperFace}}{{/each}}</textarea>
+            </div>
+            <div class="col-md-6">
+              <label for="rightFace">Sağ Yan</label>
+              <textarea class="form-control" rows="2" placeholder="Sağ Yan" id="rightFace">{{#each getPiece}}{{rightFace}}{{/each}}</textarea>
+            </div>
+            <div class="col-md-6">
+              <label for="leftFace">Sol Yan</label>
+              <textarea class="form-control" rows="2" placeholder="Sol Yan" id="leftFace">{{#each getPiece}}{{leftFace}}{{/each}}</textarea>
+            </div>
+            <div class="col-md-6">
+              <label for="under">Alt</label>
+              <textarea class="form-control" rows="2" placeholder="Alt" id="under">{{#each getPiece}}{{under}}{{/each}}</textarea>
+            </div>
+            <div class="col-md-6">
+              <label for="back">Arka</label>
+              <textarea class="form-control" rows="2" placeholder="Arka" id="back">{{#each getPiece}}{{back}}{{/each}}</textarea>
+            </div>
+          </div>
+
+
+          <div class="box-footer">
+            <button class="btn btn-primary" id="addPiece">KAYDET</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+</template>

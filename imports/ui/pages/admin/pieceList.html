@@ -1,0 +1,62 @@
+<template name="pieceList">
+
+  <section class="content">
+  <div class="row">
+
+      <!-- general form elements -->
+      <div class="box box-primary">
+        <div class="box-header with-border">
+          <h3 class="box-title">Mimari Buluntu Listesi</h3>
+        </div>
+        <div class="box-body">
+
+          <div class="box">
+
+
+            <div class="box-body table-responsive no-padding">
+              <table class="table " id="piece-list">
+                <thead>
+                <tr>
+                  <th>Bulunma Tarihi</th>
+                  <th>Yapı</th>
+                  <th>Envanter No</th>
+                  <th>Blok Cinsi</th>
+                  <th>Bezeme</th>
+                  <th>Ölçüler (YxBxGxÇ)</th>
+                  <th>Düzenle</th>
+                  <th>Sil</th>
+                </tr>
+              </thead>
+                <tbody>
+                {{#each allPiece}}
+                <tr>
+                  <td>{{bulunmaTarih}}</td>
+                  <td><a href="/pieceDetails/{{_id}}">{{curentStructure structureId}}</a></td>
+                  <td>{{envanterNo}}</td>
+                  <td>{{curentBlock blockId}}</td>
+                  <td>{{curentDecoration decorationId}}</td>
+                  <td>{{size}} {{length}} {{width}} {{diameter}}</td>
+                  <td><a class="btn btn-info btn-block btn-xs" href="/piece/{{_id}}">Düzenle</a></td>
+                  <td>
+                    {{#if statusFormat status}}
+                    <a class="btn btn-warning btn-block btn-xs">Silmek İçin İşaretlendi</a>
+                    {{else}}
+                    <a class="btn btn-danger btn-block btn-xs" id="send-remove">Sil</a>
+                    {{/if}}
+                  </td>
+                </tr>
+
+                {{/each}}
+              </tbody></table>
+            </div>
+            <!-- /.box-body -->
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+</template>

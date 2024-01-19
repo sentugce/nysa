@@ -1,0 +1,32 @@
+<template name="notificationList">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="box box-primary">
+        <table class="table table-hover">
+          <tbody>
+            <tr>
+            <th>Açıklama</th>
+            <th>Bildirim Tarihi</th>
+            <th>Talep Eden</th>
+            <th>İşlemler</th>
+          </tr>
+
+
+{{#each allNotification}}
+
+ <tr>
+<td><a href="{{type}}/{{getId}}">{{description}}</a></td>
+<td>{{dateFormat createdAt}}</td>
+<td>{{userFormat userId}}</td>
+<td><a class="btn btn-warning btn-xs" href="#" id="refuse">Reddet</a>
+<a class="btn btn-danger btn-xs" id="send-remove">Kabul Et</a></td>
+ </tr>
+{{/each}}
+  </tbody>
+</table>
+
+
+</div>
+</div>
+</div>
+</template>

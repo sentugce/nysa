@@ -1,0 +1,46 @@
+<template name="sidebar">
+  <aside class="main-sidebar">
+
+    <section class="sidebar">
+
+
+      <ul class="sidebar-menu" >
+        <li class="header " style="font-size:16px; color:white;">Yönetim Paneli</li>
+        <!-- Optionally, you can add icons to the links -->
+	<li>
+	</li>
+
+	<li class="menu-item" >
+	    <a href="#">
+              <i class="fa fa-th"></i> <span>BULUNTULAR</span>
+
+              <span class="pull-right-container">
+                <small class="label pull-right bg-green"></small>
+              </span>
+            </a>
+            <ul class="treeview-menu">
+              <li><a href="/piece"><i class="fa fa-circle-o"></i> Mimari Eser Envanter Fişi</a></li>
+              <li><a href="/pieceList"><i class="fa fa-circle-o"> </i>Mimari Eser Listesi</a></li>
+            </ul>
+
+
+	</li>
+
+	 {{#if isAdmin}}
+
+          <li>
+            <a href="/admin/userList"><i class="fa fa-users"></i>  KULLANICI LİSTESİ</a>
+          </li>
+
+          <li>
+            <a href="/admin/trash"><i class="fa fa-archive"></i>ÇÖP KUTUSU</a>
+          </li>
+          {{/if}}
+      </ul>
+    </section>
+
+
+  </aside>
+
+
+</template>

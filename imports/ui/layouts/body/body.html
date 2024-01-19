@@ -1,0 +1,12 @@
+<template name="App_body">
+
+  {{#AdminLTE skin="blue"}}
+  {{> Template.dynamic template=navbar}}
+  {{> Template.dynamic template=sidebar}}
+  <div class="content-wrapper" style="min-height: 960px;">
+  {{> Template.dynamic template=main}}
+  </div>
+
+  {{/AdminLTE}}
+
+</template>
